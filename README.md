@@ -1,5 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+to see the recommended Characters you have to type a name that have at least 4 characters
 ## Available Scripts
 
 In the project directory, you can run:

@@ -87,6 +87,14 @@ class Characters extends Component {
                                 <Character key={character.id} character={character} />
                             ))}
                         </div>
+                        <div>
+                            {!addfilter &&
+                                <Pagination
+                                    currentPage={currentPage}
+                                    totalPages={info.pages}
+                                    handlePage={(pageNumber) => this.handlePage(pageNumber)}
+                                />}
+                        </div>
                     </div>
                     <div className="col-md-3">
                         {!addfilter &&

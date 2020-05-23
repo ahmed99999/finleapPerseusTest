@@ -3,10 +3,12 @@ import { getCharacter } from '../services/characerService';
 import { getEpisodes } from '../services/episodeService';
 import Episode from './episode';
 import { Link } from 'react-router-dom';
+import Character from './character';
 
 class Episodes extends Component {
     state = {
-        episodes: []
+        episodes: [],
+        character: {}
     }
 
     async componentDidMount() {
@@ -18,15 +20,17 @@ class Episodes extends Component {
             .join(',');
         let episodes = await getEpisodes(null, null, episodesIds);
         episodes = (typeof episodes !== 'undefined') ? ((!Array.isArray(episodes)) ? [episodes] : episodes) : [];
-        this.setState({ episodes });
+        this.setState({ episodes, character });
     }
 
     render() {
-        const { episodes } = this.state;
-
+        const { episodes, character } = this.state;
+        character.source = 'episodes';
         return (
             <div className="row" style={{ marginTop: '50px' }}>
-                <div className="col-md-1"></div>
+                <div className="col-md-1">
+                    <Link className="btn btn-primary btn-lg" to="/characters" >Back</Link>
+                </div>
                 <div className="col-md-8">
                     <table className="table">
                         <thead className="thead-light">
@@ -49,7 +53,7 @@ class Episodes extends Component {
                     </table>
                 </div>
                 <div className="col-md-3">
-                    <Link className="btn btn-primary btn-lg" to="/characters" />
+                    <Character character={character} />
                 </div>
             </div>
         );
